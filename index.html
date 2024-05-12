@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+		<meta charset="utf-8" />
+		<title>干燥剂供不应求</title>
+		  <link rel="stylesheet" type="text/css" href="styles.css">  
+	</head>
+	<body>
+		<h1 class="animate__animated animate__backInUp">怪异名称の生成、完善</h1>
+		<p class="animate__animated animate__backInDown">可以自己输入一个主体，但也可以点击按钮随机生成（）</p>
+		<br>
+		<hr>
+		<br>
+		<div id = "Bt2_div">
+			<button class="btn" id = "Bt2" onclick="suiji()">随机一个主体</button>
+			<button class="btn" id="Qian_Hou_Bt" onclick="suiji_QianHou()">随机前后缀</button>
+		</div>
+		<div id="form1_div">
+			<form id="form1">
+				<select class="btn" id="QianZhui" name="QianZhui">
+				      <option  value="suiji">随机</option>
+				      <option  value="0">迷你世界</option>
+				      <option  value="1">Minecraft</option>
+				    </select>
+				<label style="font-weight:700;font-size:25px">主体名:</label>
+				<input class="btn" type="text" id="zhuti" name="zhuti" required>
+				<select class="btn" id="HouZhui" name="HouZhui">
+				      <option value="suiji">随机</option>
+				      <option value="0">公主</option>
+				      <option value="1">小公主</option>
+					  <option value="2">公主殿下</option>
+					  <option value="3">大人</option>
+					  <option value="4">皇后</option>
+					  <option value="5">女王</option>
+					  <option value="6">军团</option>
+					  <option value="7">团长</option>
+					  <option value="8">班长</option>
+				    </select>
+					<br>
+				<button class="btn" id="Bt3" onclick="getInputValue()"> 确定</button>
+			</form>
+		</div>
+		<br>
+		<hr>
+		<br>
+		<div id="Bts_div">
+			<button class="btn" id="Bts_div1_YiHeiHua" onclick="KuoHao1()">(已黑化)</button>
+			<button class="btn" id="Bts_div2_WeiHeiHua" onclick="KuoHao2()">(未黑化)</button>
+			<button class="btn" id="Bts_div3_HeiHuaZhong" onclick="KuoHao3()">(黑化中)</button>
+			<br>
+			<button class="btn" id="Bts_div4_FanMiNi" onclick="KuoHao4()">(反迷你)</button>
+			<button class="btn" id="Bts_div5_FanMc" onclick="KuoHao5()">(反mc)</button>
+			<br>
+			<button class="btn" id="ChongZhi_NAME" onclick="ChongZhi()">重置</button>
+		</div>
+		<div id="p_div1"><p id="div_Bts_p1" style="font-size:50px ;">NAME</p></div>
+		<div id="bt_copy_div"><button class="btn" onclick="copyTextToClipboard()">点击复制</button> </div>
+		
+		
+	</body>
+	<script>
+		let Zhuti_list=["Him","303","晓晓","娇娇","原神","逍遥","狮亿"];
+let HouZhui_list=["公主","小公主","公主殿下","大人","皇后","女王","军团","团长","班长"];
+let QianZhui_list=["迷你世界","Minecraft"];
+function suiji(){
+let a = Zhuti_list[getRandomInt(0,Zhuti_list.length-1)];
+document.getElementById("zhuti").value=a;
+
+}
+
+function getInputValue(){
+event.preventDefault()
+let inputElement = document.getElementById('zhuti').value;
+
+if (inputElement == ""){
+	alert("不能为空（")
+}else{
+	//document.getElementById('zhuti').disabled=true;
+	//document.getElementById('Bt2').disabled=true;
+	//禁用按钮，没屁用注释掉算了
+}
+let QianZhui = document.getElementById("QianZhui").value
+let HouZhui = document.getElementById("HouZhui").value
+
+if (QianZhui == "suiji"){
+	let a = getRandomInt(1,QianZhui_list.length);
+	document.getElementById("QianZhui").selectedIndex = a;
+}
+if (HouZhui == "suiji"){
+	let a = getRandomInt(1,HouZhui_list.length);
+	document.getElementById("HouZhui").selectedIndex = a;
+}
+let name = QianZhui_list[QianZhui] + inputElement + HouZhui_list[HouZhui];
+document.getElementById('div_Bts_p1').textContent=name;
+
+
+}
+function suiji_QianHou(){
+let a = getRandomInt(1,QianZhui_list.length);
+document.getElementById("QianZhui").selectedIndex = a;
+let aa = getRandomInt(1,HouZhui_list.length);
+document.getElementById("HouZhui").selectedIndex = aa;
+
+}
+
+function KuoHao1(){
+document.getElementById('div_Bts_p1').textContent=document.getElementById('div_Bts_p1').textContent+"（已黑化）";
+}
+function KuoHao2(){
+document.getElementById('div_Bts_p1').textContent=document.getElementById('div_Bts_p1').textContent+"（未黑化）";
+}
+function KuoHao3(){
+document.getElementById('div_Bts_p1').textContent=document.getElementById('div_Bts_p1').textContent+"（黑化中）";
+}
+function KuoHao4(){
+document.getElementById('div_Bts_p1').textContent=document.getElementById('div_Bts_p1').textContent+"（反迷你）";
+}
+function KuoHao5(){
+document.getElementById('div_Bts_p1').textContent=document.getElementById('div_Bts_p1').textContent+"（反mc）";
+}
+function ChongZhi(){
+let inputElement = document.getElementById('zhuti').value;
+let QianZhui = document.getElementById("QianZhui").value
+let HouZhui = document.getElementById("HouZhui").value
+let name = QianZhui_list[QianZhui] + inputElement + HouZhui_list[HouZhui];
+document.getElementById('div_Bts_p1').textContent=name;
+}
+
+
+
+function getRandomInt(min, max) {  
+min = Math.ceil(min);  
+max = Math.floor(max);  
+return Math.floor(Math.random() * (max - min + 1)) + min;  
+}  
+
+function copyTextToClipboard() {  
+// 获取要复制的文本  
+var copyText = document.getElementById("div_Bts_p1").textContent || document.getElementById("div_Bts_p1").innerText;  
+
+// 使用浏览器的clipboard API复制文本  
+navigator.clipboard.writeText(copyText).then(function() {  
+	console.log('文本已复制到剪贴板');  
+}).catch(function(err) {  
+	// 某些浏览器可能不支持clipboard API  
+	console.error('复制失败: ', err);  
+});  
+}  
+
+	</script>
+</html>
